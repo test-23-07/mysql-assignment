@@ -1,0 +1,428 @@
+{
+  "repo": "test-23-07/orm-day",
+  "introduction": "Eure Aufgabe ist es, ein Bash Script namens __install.sh__ zu schreiben (und zu committen) um __mySQL__ auf einem __Ubuntu__ System zu installieren und eine Datenbank namens __starchaser__ einzurichten (User/Passwort für mysql: __root__ und __root__) für einen neuen mySQL Benutzer namens __Hans__, mit dem Passwort __Dampfmaschine4711__  \nAnschliessend erstellt Ihr eine __requirements.txt__ Datei die __sqlalchemy__ und __mysql-connector-python__ auflistet, install.sh sollte den entsprechenden __pip__ Befehl hierfür enthalten um die Abhängigkeiten aus der requirements.txt zu installieren.  \nAm Ende erstellt Ihr eine Python3 Datei namens main.py mit einer main Funktion die aufgerufen wird wenn main.py via Python3 gestartet wird. Die main Funktion sollte als einzige STDOUT Ausgabe __AWS23/07__ ausgeben.  \nErstellt eine neue __Person__ Klasse, die vom Pydantic __BaseModel__ ableitet, mit den Attributen firstname, lastname und email. Jede Zeile des Codes in der install.sh und in der Python-Datei sollte gut kommentiert sein und erklären, was sie tut. Commit messages sollten selbsterklärend sein und exakt beschreiben, was Ihr getan habt (gerne auf Englisch).",
+  "logo_url": "https://miro.medium.com/max/1200/1*9TZHTGKjIyUOAvmQkV1RNA.png",
+  "timeframe": "60 Minuten (Viel Erfolg!)",
+  "tests": [
+    {
+      "specs": {
+        "title": "Erstelle eine Script Datei namens install.sh"
+      },
+      "name": "checking for install.sh",
+      "feedback": "install.sh could not be found",
+      "urls": [
+        "https://wiki.ubuntuusers.de/Shell/Bash-Skripting-Guide_f%C3%BCr_Anf%C3%A4nger/"
+      ],
+      "keywords": [
+        "bash script",
+        "linux",
+        "ubuntu",
+        "create"
+      ],
+      "type": "",
+      "run": "sudo ls -l install.sh",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Sorge dafür, dass das Bash-Script den korrekten Shebang enthält"
+      },
+      "name": "checking for shebang",
+      "feedback": "shebang could not be found in install.sh",
+      "urls": [
+        "https://wiki.ubuntuusers.de/Shebang_f%C3%BCr_Shellskripte/"
+      ],
+      "keywords": [
+        "bash",
+        "shebang",
+        "linux"
+      ],
+      "type": "",
+      "run": "grep -q '^#!/bin/bash' install.sh",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "MySQL Server Paket installieren unter Ubuntu"
+      },
+      "name": "checking for mysql-server",
+      "feedback": "mysql-server could not be found",
+      "urls": [
+        "https://wiki.ubuntuusers.de/MySQL/"
+      ],
+      "keywords": [
+        "ubuntu",
+        "install",
+        "mysql-server"
+      ],
+      "type": "",
+      "run": "dpkg -l | grep mysql-server",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Stelle in Deinem Script sicher, dass der mysql service läuft"
+      },
+      "name": "checking mysql daemon status",
+      "feedback": "mysql does not seem to be running",
+      "urls": [
+        "https://vitux.com/how-to-start-stop-or-restart-services-in-ubuntu/",
+        "https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units",
+        "https://itsfoss.com/start-stop-restart-services-linux/",
+        "https://medium.com/@samunyi90/how-to-enable-and-disable-mysql-service-on-ubuntu-20-04-66bb4dc29b04"
+      ],
+      "keywords": [
+        "mysql",
+        "ubuntu",
+        "start",
+        "enable",
+        "service"
+      ],
+      "type": "",
+      "run": "sudo bash install.sh ; systemctl is-active mysql",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Richte einen mySQL-Benutzer namens Hans ein, mit dem Passwort Dampfmaschine4711"
+      },
+      "name": "checking mysql user/password",
+      "feedback": "Your mysql user/password seems incorrect",
+      "urls": [
+        "https://gridscale.io/community/tutorials/mysql-benutzer-rechte-zuweisen/",
+        "https://linuxize.com/post/how-to-manage-mysql-databases-and-users-from-the-command-line/",
+        "https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql",
+        "https://www.interserver.net/tips/kb/manage-mysql-users-command-line/",
+        "https://www.a2hosting.com/kb/developer-corner/mysql/managing-mysql-databases-and-users-from-the-command-line/"
+      ],
+      "keywords": [
+        "create user",
+        "mysql",
+        "password"
+      ],
+      "type": "",
+      "run": "sudo mysql -u root -proot -e \"SELECT user, host FROM mysql.user WHERE user='Hans' AND host='localhost';\"",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Erstelle eine mySQL Datenbank namens starchaser"
+      },
+      "name": "looking for mysql db named starchaser",
+      "feedback": "Could not find mySQL DB named starchaser",
+      "urls": [
+        "https://wiki.ubuntuusers.de/MySQL/",
+        "https://blog.devart.com/mysql-command-line-client.html",
+        "https://dev.mysql.com/doc/refman/8.0/en/mysql.html"
+      ],
+      "keywords": [
+        "create",
+        "database",
+        "mysql",
+        "ubuntu",
+        "SQL",
+        "W3C"
+      ],
+      "type": "",
+      "run": "sudo mysql -u root -proot -e \"SHOW DATABASES LIKE 'starchaser';\"",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Gebe dem neuen mySQL-Benutzer Privilegien (Rechte) für die starchaser Datenbank"
+      },
+      "name": "looking for mysql privileges for user/database (starchaser)",
+      "feedback": "starchaser does not seem accessible to user Hans",
+      "urls": [
+        "https://wiki.ubuntuusers.de/MySQL/",
+        "https://www.hostinger.com/tutorials/mysql/how-create-mysql-user-and-grant-permissions-command-line"
+      ],
+      "keywords": [
+        "user",
+        "privileges",
+        "database",
+        "mysql",
+        "ubuntu"
+      ],
+      "type": "",
+      "run": "sudo mysql -u Hans -pDampfmaschine4711 -e \"USE starchaser;\" >/dev/null 2>&1",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Erstelle eine requirements.txt Datei für die Installation der sqlalchemy und mysql-connector-python Abhängigkeiten."
+      },
+      "name": "looking for requirements.txt",
+      "feedback": "requirements.txt not found",
+      "urls": [
+        "https://pip.pypa.io/en/stable/reference/requirements-file-format/",
+        "https://learnpython.com/blog/python-requirements-file/",
+        "https://datagy.io/python-requirements-txt/",
+        "https://stackoverflow.com/questions/66899666/how-to-install-from-requirements-txt"
+      ],
+      "keywords": [
+        "python3",
+        "pip3",
+        "requirements.txt"
+      ],
+      "type": "",
+      "run": "test -f requirements.txt",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Erweitere install.sh um den entsprechenden pip Befehl auszuführen um die Abhängigkeiten aus der requirements.txt zu installieren"
+      },
+      "name": "Checking installed pip packages",
+      "feedback": "requirements not found",
+      "urls": [
+        "https://pip.pypa.io/en/stable/cli/pip/",
+        "https://docs.python.org/3/installing/index.html",
+        "https://pypi.org/"
+      ],
+      "keywords": [
+        "python3",
+        "pip3",
+        "requirements.txt"
+      ],
+      "type": "",
+      "run": "pip list | grep SQLAlchemy && pip list | grep mysql-connector-python",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Erstelle eine main.py Datei."
+      },
+      "name": "looking for main.py",
+      "feedback": "main.py not found",
+      "urls": [
+        "https://realpython.com/python-first-steps/",
+        "https://code.visualstudio.com/docs/python/python-tutorial",
+        "https://stackoverflow.com/questions/419163/what-does-if-name-main-do"
+      ],
+      "keywords": [
+        "python",
+        "main.py",
+        "main handler"
+      ],
+      "type": "",
+      "run": "test -f main.py",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "timeout": 120,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Füge Deiner main.py Datei eine main() Funktion hinzu"
+      },
+      "name": "looking for main() function in main.py",
+      "feedback": "Your main.py file should have a main function",
+      "urls": [
+        "https://www.geeksforgeeks.org/python-main-function/",
+        "https://realpython.com/python-main-function/",
+        "https://stackoverflow.com/questions/22492162/understanding-the-main-method-of-python"
+      ],
+      "keywords": [
+        "python3",
+        "main",
+        "function"
+      ],
+      "type": "PYTHONAST",
+      "run": ".//FunctionDef[contains(@name,'main')]",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Deine main.py sollte eine main() Funktion haben und diese auch aufrufen über den typischen if Block."
+      },
+      "name": "looking main() function call",
+      "feedback": "Your main() function must be called.",
+      "urls": [
+        "https://www.python-lernen.de/if-abfrage-python.htm"
+      ],
+      "keywords": [
+        "python3",
+        "main",
+        "function"
+      ],
+      "type": "PYTHONAST",
+      "run": ".//Call/func/Name[@id='main']",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Beim Aufruf der main Funktion, sollte die STDOUT Ausgabe AWS23/07 sein."
+      },
+      "name": "looking for output generated by main.py",
+      "feedback": "output generated by main.py does not look correct",
+      "urls": [
+        "https://www.geeksforgeeks.org/how-to-print-to-stderr-and-stdout-in-python/"
+      ],
+      "keywords": [
+        "python3",
+        "print"
+      ],
+      "type": "",
+      "run": "python3 main.py",
+      "file": "",
+      "output": "AWS23/07",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Innerhalb der main.py Datei, erstellt eine globale Person Klasse die vom Pydantic BaseModel ableitet. Erweitert requirements.txt entsprechend für die neue Abhängigkeit und importiert diese in main.py"
+      },
+      "name": "looking class Person inheriting from BaseModel",
+      "feedback": "no class Person found or not inheriting from BaseModel",
+      "urls": [
+        "https://betterprogramming.pub/the-beginners-guide-to-pydantic-ba33b26cde89"
+      ],
+      "keywords": [
+        "python3",
+        "Pydantic",
+        "BaseModel"
+      ],
+      "type": "PYTHONAST",
+      "run": "//ClassDef[@name='Person']/bases/Name[@id='BaseModel']",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Die Person Klasse innerhalb der main.py muss ein firstname Feld des Typs String enthalten."
+      },
+      "name": "looking for required attributes in Person class: firstname",
+      "feedback": "not all required attributes found in Person class, missing: firstname",
+      "urls": [
+        "https://docs.pydantic.dev/latest/concepts/fields/"
+      ],
+      "keywords": [
+        "python3",
+        "Pydantic",
+        "BaseModel"
+      ],
+      "type": "PYTHONAST",
+      "run": "//ClassDef[@name='Person']/body//AnnAssign[target/Name[@id='firstname']]",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Die Person Klasse innerhalb der main.py muss ein lastname Feld enthalten (Typ String)."
+      },
+      "name": "looking for required attributes in Person class: lastname",
+      "feedback": "not all required attributes found in Person class, missing: lastname",
+      "urls": [
+        "https://docs.pydantic.dev/latest/concepts/fields/"
+      ],
+      "keywords": [
+        "python3",
+        "Pydantic",
+        "BaseModel"
+      ],
+      "type": "PYTHONAST",
+      "run": "//ClassDef[@name='Person']/body//AnnAssign[target/Name[@id='lastname']]",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Die Person Klasse innerhalb der main.py muss ein email Feld enthalten (Typ String)."
+      },
+      "name": "looking for required attributes in Person class: email",
+      "feedback": "not all required attributes found in Person class, missing: email",
+      "urls": [
+        "https://docs.pydantic.dev/latest/concepts/fields/"
+      ],
+      "keywords": [
+        "python3",
+        "Pydantic",
+        "BaseModel"
+      ],
+      "type": "PYTHONAST",
+      "run": "//ClassDef[@name='Person']/body//AnnAssign[target/Name[@id='email']]",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "specs": {
+        "title": "Instanziere (erzeuge) ein Objekt der Klasse Person indem Du die entsprechenden Parameter übergibst."
+      },
+      "name": "looking for constructor call",
+      "feedback": "You are not instantiating a Person object",
+      "urls": [
+        ""
+      ],
+      "keywords": [
+        "python3",
+        "Pydantic",
+        "Instantiate Object"
+      ],
+      "type": "PYTHONAST",
+      "run": "//Call[func/Name/@id='Person' and keywords/keyword[@arg='firstname' and value/Constant/@type='str'] and keywords/keyword[@arg='lastname' and value/Constant/@type='str'] and keywords/keyword[@arg='email' and value/Constant/@type='str']]",
+      "file": "main.py",
+      "output": "",
+      "comparison": "",
+      "timeout": 10,
+      "points": 15
+    }
+  ]
+}
