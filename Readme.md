@@ -1,4 +1,4 @@
-<img src="https://miro.medium.com/max/1200/1*9TZHTGKjIyUOAvmQkV1RNA.png" alt="Eure Aufgabe ist es, ein Bash Script namens __install.sh__ zu schreiben (und zu committen) um __mySQL__ auf einem __Ubuntu__ System zu installieren und eine Datenbank namens __starchaser__ einzurichten (User/Passwort für mysql: __root__ und __root__) für einen neuen mySQL Benutzer namens __Hans__, mit dem Passwort __Dampfmaschine4711__  
+<img src="https://mysql.tutorials24x7.com/uploads/2020-06-05/banner/tutorials24x7-install-mysql-8-on-ubuntu-20-04-lts-banner.jpg" alt="Eure Aufgabe ist es, ein Bash Script namens __install.sh__ zu schreiben (und zu committen) um __mySQL__ auf einem __Ubuntu__ System zu installieren und eine Datenbank namens __starchaser__ einzurichten (User/Passwort für mysql: __root__ und __root__) für einen neuen mySQL Benutzer namens __Hans__, mit dem Passwort __Dampfmaschine4711__  
  Jede Zeile des Codes in der install.sh sollte gut kommentiert sein und erklären, was sie tut. Commit messages sollten selbsterklärend sein und exakt beschreiben, was Ihr getan habt (gerne auf Englisch)." width="300"/>
 
 ---
