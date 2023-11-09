@@ -5,7 +5,7 @@ Erstellt eine neue __Person__ Klasse, die vom Pydantic __BaseModel__ ableitet, m
 
 ---
 # Aufgabe
-[![GitHub Classroom Workflow](https://github.com/test-23-07/orm-day/actions/workflows/classroom.yml/badge.svg)](https://github.com/test-23-07/orm-day/actions/workflows/classroom.yml) 
+[![GitHub Classroom Workflow](https://github.com/test-23-07/mysql-assignment/actions/workflows/classroom.yml/badge.svg)](https://github.com/test-23-07/mysql-assignment/actions/workflows/classroom.yml) 
 
 Eure Aufgabe ist es, ein Bash Script namens __install.sh__ zu schreiben (und zu committen) um __mySQL__ auf einem __Ubuntu__ System zu installieren und eine Datenbank namens __starchaser__ einzurichten (User/Passwort für mysql: __root__ und __root__) für einen neuen mySQL Benutzer namens __Hans__, mit dem Passwort __Dampfmaschine4711__  
 Anschliessend erstellt Ihr eine __requirements.txt__ Datei die __sqlalchemy__ und __mysql-connector-python__ auflistet, install.sh sollte den entsprechenden __pip__ Befehl hierfür enthalten um die Abhängigkeiten aus der requirements.txt zu installieren.  
